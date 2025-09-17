@@ -62,3 +62,65 @@ LDAP is used to:
 
 LDAP queries AD using a **hierarchical path**:  
 
+DC=company,DC=com
+├─ OU=Users
+│ ├─ CN=Alice
+│ └─ CN=Bob
+└─ OU=Computers
+└─ CN=PC1
+
+
+- **DC** = Domain Component  
+- **OU** = Organizational Unit  
+- **CN** = Common Name (object)  
+
+### 🔹 Example Query
+
+- Find all users in Sales OU:
+  
+ldap://dc1.company.com
+Base DN: OU=Sales,DC=company,DC=com
+Filter: (objectClass=user)
+
+
+---
+
+## 🔹 LDAP URLs
+
+- Standard LDAP URL format:  
+ldap://<server>/<BaseDN>?<attributes>?<scope>?<filter>
+
+
+- Meaning:
+  - Connect to `dc1.company.com`  
+  - Search in `OU=HR`  
+  - Return `cn` and `mail` attributes  
+  - Include all sub-entries (`sub`)  
+  - Only objects of type `user`  
+
+---
+
+## 🔹 LDAP Security
+
+- **Use LDAPS (SSL/TLS)** → encrypts traffic  
+- **Bind securely using Kerberos** → avoids sending passwords in plain text  
+- **Control access via AD permissions** → only authorized apps/users can read/write  
+
+---
+
+## 🎯 Key Takeaways
+
+- LDAP = **query & modification protocol** for AD  
+- Works with **users, groups, computers, OUs, and attributes**  
+- Supports **secure authentication & encrypted communication**  
+- Essential for **apps, scripts, and services** interacting with AD  
+
+---
+
+📌 **Analogy:**  
+LDAP is like a **waiter at a restaurant** 🍽️:  
+- You tell the waiter what you want (query).  
+- The waiter fetches it from the kitchen (AD database).  
+- You get exactly what you asked for, without digging through the kitchen yourself.
+
+---
